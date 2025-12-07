@@ -1,5 +1,3 @@
-// Domain Entities (camelCase)
-
 export type MediaType = 'movie' | 'tv';
 
 export interface BaseMedia {
@@ -63,7 +61,6 @@ export interface CastMember {
     order: number;
 }
 
-// Search and Filter Params
 export interface MoviesSearchParams {
     query?: string;
     page?: number;

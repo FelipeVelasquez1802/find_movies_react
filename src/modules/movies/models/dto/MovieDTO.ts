@@ -1,4 +1,3 @@
-// Data Transfer Object - API Response format
 export interface MovieDTO {
     id: number;
     title: string;

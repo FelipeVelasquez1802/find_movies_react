@@ -130,8 +130,8 @@ src/
 │
 ├── pages/                          # Page components
 │   └── movies/
-│       ├── MovieDashboard.tsx     # Home page
-│       ├── MediaDetail.tsx        # Detail page
+│       ├── MovieDashboardPage.tsx     # Home page
+│       ├── MediaDetailPage.tsx        # Detail page
 │       └── components/            # Page-specific components
 │           ├── SearchHeader.tsx
 │           ├── SearchResults.tsx

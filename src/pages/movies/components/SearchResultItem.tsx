@@ -19,14 +19,12 @@ const SearchResultItem = ({ media, onClick }: SearchResultItemProps) => {
             onClick={onClick}
             className="flex items-center gap-3 p-3 hover:bg-gray-100 cursor-pointer transition-colors"
         >
-            {/* Poster Image */}
             <img
                 src={posterUrl}
                 alt={media.title}
                 className="w-12 h-18 object-cover rounded"
             />
 
-            {/* Info */}
             <div className="flex-1 min-w-0">
                 <h3 className="font-medium text-sm text-gray-900 truncate">
                     {media.title}

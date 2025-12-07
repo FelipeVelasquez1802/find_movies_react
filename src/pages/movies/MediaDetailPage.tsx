@@ -1,19 +1,7 @@
 import { getBackdropUrl, getPosterUrl, getProfileUrl } from '@/core/config/tmdbConfig';
 import { useMediaDetailController } from './controllers';
 
-/**
- * MediaDetail Page (View Layer)
- *
- * Displays detailed information about a movie or TV show:
- * - Backdrop and poster images
- * - Title, tagline, rating, year, runtime/seasons
- * - Genres, overview, director/creators
- * - Cast with photos
- * - Additional info (budget, revenue, status)
- *
- * Business logic is handled by useMediaDetailController
- */
-const MediaDetail = () => {
+const MediaDetailPage = () => {
     const {
         isLoading,
         isError,
@@ -24,7 +12,6 @@ const MediaDetail = () => {
         getNumberOfSeasons,
     } = useMediaDetailController();
 
-    // Loading State
     if (isLoading) {
         return (
             <div className="min-h-screen bg-gray-900 flex items-center justify-center">
@@ -36,7 +23,6 @@ const MediaDetail = () => {
         );
     }
 
-    // Error State
     if (isError || !data) {
         return (
             <div className="min-h-screen bg-gray-900 flex items-center justify-center">
@@ -61,14 +47,12 @@ const MediaDetail = () => {
         ? getPosterUrl(data.posterPath)
         : 'https://via.placeholder.com/342x513?text=No+Image';
 
-    // Get computed values from controller
     const year = getYear();
     const runtime = getRuntime();
     const numberOfSeasons = getNumberOfSeasons();
 
     return (
         <div className="min-h-screen bg-gray-900 text-white">
-            {/* Back Button */}
             <div className="absolute top-4 left-4 z-20">
                 <button
                     onClick={handleBackClick}
@@ -81,7 +65,6 @@ const MediaDetail = () => {
                 </button>
             </div>
 
-            {/* Backdrop Image */}
             {backdropUrl && (
                 <div className="relative h-96 overflow-hidden">
                     <img
@@ -93,10 +76,8 @@ const MediaDetail = () => {
                 </div>
             )}
 
-            {/* Content */}
             <div className="container mx-auto px-8 -mt-32 relative z-10">
                 <div className="flex flex-col md:flex-row gap-8">
-                    {/* Poster */}
                     <div className="flex-shrink-0">
                         <img
                             src={posterUrl}
@@ -105,7 +86,6 @@ const MediaDetail = () => {
                         />
                     </div>
 
-                    {/* Info */}
                     <div className="flex-1">
                         <h1 className="text-4xl font-bold mb-2">{data.title}</h1>
 
@@ -113,7 +93,6 @@ const MediaDetail = () => {
                             <p className="text-gray-400 italic mb-4">{data.tagline}</p>
                         )}
 
-                        {/* Meta Info */}
                         <div className="flex items-center gap-4 mb-6 text-sm">
                             <span className="flex items-center gap-1">
                                 ⭐ {data.voteAverage.toFixed(1)}
@@ -134,7 +113,6 @@ const MediaDetail = () => {
                             )}
                         </div>
 
-                        {/* Genres */}
                         <div className="flex flex-wrap gap-2 mb-6">
                             {data.genres.map((genre) => (
                                 <span
@@ -146,13 +124,11 @@ const MediaDetail = () => {
                             ))}
                         </div>
 
-                        {/* Overview */}
                         <div className="mb-6">
                             <h2 className="text-xl font-semibold mb-2">Overview</h2>
                             <p className="text-gray-300 leading-relaxed">{data.overview}</p>
                         </div>
 
-                        {/* Director or Creators */}
                         {'director' in data && data.director && (
                             <div className="mb-6">
                                 <h3 className="text-lg font-semibold mb-2">Director</h3>
@@ -167,7 +143,6 @@ const MediaDetail = () => {
                             </div>
                         )}
 
-                        {/* Cast */}
                         {data.cast && data.cast.length > 0 && (
                             <div className="mb-6">
                                 <h2 className="text-xl font-semibold mb-4">Cast</h2>
@@ -191,7 +166,6 @@ const MediaDetail = () => {
                             </div>
                         )}
 
-                        {/* Additional Info */}
                         <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
                                 <span className="text-gray-400">Status:</span>
@@ -214,10 +188,9 @@ const MediaDetail = () => {
                 </div>
             </div>
 
-            {/* Bottom Spacing */}
             <div className="h-20" />
         </div>
     );
 };
 
-export default MediaDetail;
+export default MediaDetailPage;

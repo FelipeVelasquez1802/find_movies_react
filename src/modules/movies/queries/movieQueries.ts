@@ -2,7 +2,6 @@ import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { tmdbRepository } from '../services/tmdb.repository';
 import type { Movie, MovieDetail, TVShow, TVShowDetail, BaseMedia } from '../models/entity';
 
-// Query Keys
 export const MOVIE_QUERY_KEYS = {
     popularMovies: (page: number) => ['movies', 'popular', page] as const,
     topRatedMovies: (page: number) => ['movies', 'topRated', page] as const,
@@ -19,23 +18,15 @@ export const MOVIE_QUERY_KEYS = {
     searchMulti: (query: string, page: number) => ['search', 'multi', query, page] as const,
 };
 
-// ===== MOVIE QUERIES =====
-
-/**
- * Get popular movies
- */
 export const usePopularMovies = (page: number = 1): UseQueryResult<{ movies: Movie[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.popularMovies(page),
         queryFn: () => tmdbRepository.getPopularMovies(page),
-        staleTime: 5 * 60 * 1000, // 5 minutes
-        gcTime: 10 * 60 * 1000, // 10 minutes
+        staleTime: 5 * 60 * 1000,
+        gcTime: 10 * 60 * 1000,
     });
 };
 
-/**
- * Get top rated movies
- */
 export const useTopRatedMovies = (page: number = 1): UseQueryResult<{ movies: Movie[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.topRatedMovies(page),
@@ -45,9 +36,6 @@ export const useTopRatedMovies = (page: number = 1): UseQueryResult<{ movies: Mo
     });
 };
 
-/**
- * Get now playing movies (for "Premieres" section)
- */
 export const useNowPlayingMovies = (page: number = 1): UseQueryResult<{ movies: Movie[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.nowPlayingMovies(page),
@@ -57,9 +45,6 @@ export const useNowPlayingMovies = (page: number = 1): UseQueryResult<{ movies: 
     });
 };
 
-/**
- * Discover movies by year (for "Premieres 2023" section)
- */
 export const useDiscoverMovies = (year?: number, page: number = 1): UseQueryResult<{ movies: Movie[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.discoverMovies(year, page),
@@ -69,23 +54,15 @@ export const useDiscoverMovies = (year?: number, page: number = 1): UseQueryResu
     });
 };
 
-/**
- * Get movie details by ID
- */
 export const useMovieDetail = (movieId: number): UseQueryResult<MovieDetail, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.movieDetail(movieId),
         queryFn: () => tmdbRepository.getMovieDetail(movieId),
-        staleTime: 10 * 60 * 1000, // 10 minutes
-        gcTime: 30 * 60 * 1000, // 30 minutes
+        staleTime: 10 * 60 * 1000,
+        gcTime: 30 * 60 * 1000,
     });
 };
 
-// ===== TV SHOW QUERIES =====
-
-/**
- * Get popular TV shows
- */
 export const usePopularTVShows = (page: number = 1): UseQueryResult<{ shows: TVShow[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.popularTVShows(page),
@@ -95,9 +72,6 @@ export const usePopularTVShows = (page: number = 1): UseQueryResult<{ shows: TVS
     });
 };
 
-/**
- * Get top rated TV shows
- */
 export const useTopRatedTVShows = (page: number = 1): UseQueryResult<{ shows: TVShow[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.topRatedTVShows(page),
@@ -107,9 +81,6 @@ export const useTopRatedTVShows = (page: number = 1): UseQueryResult<{ shows: TV
     });
 };
 
-/**
- * Get on the air TV shows
- */
 export const useOnTheAirTVShows = (page: number = 1): UseQueryResult<{ shows: TVShow[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.onTheAirTVShows(page),
@@ -119,9 +90,6 @@ export const useOnTheAirTVShows = (page: number = 1): UseQueryResult<{ shows: TV
     });
 };
 
-/**
- * Discover TV shows by year
- */
 export const useDiscoverTVShows = (year?: number, page: number = 1): UseQueryResult<{ shows: TVShow[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.discoverTVShows(year, page),
@@ -131,9 +99,6 @@ export const useDiscoverTVShows = (year?: number, page: number = 1): UseQueryRes
     });
 };
 
-/**
- * Get TV show details by ID
- */
 export const useTVShowDetail = (tvId: number): UseQueryResult<TVShowDetail, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.tvShowDetail(tvId),
@@ -143,18 +108,12 @@ export const useTVShowDetail = (tvId: number): UseQueryResult<TVShowDetail, Erro
     });
 };
 
-// ===== SEARCH QUERIES =====
-
-/**
- * Multi-search (movies and TV shows) - For search bar
- * Returns max 5 results as per requirements
- */
 export const useSearchMulti = (query: string, page: number = 1): UseQueryResult<{ results: BaseMedia[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.searchMulti(query, page),
         queryFn: () => tmdbRepository.searchMulti({ query, page }),
-        enabled: query.length > 0, // Only search when there's a query
-        staleTime: 2 * 60 * 1000, // 2 minutes
-        gcTime: 5 * 60 * 1000, // 5 minutes
+        enabled: query.length > 0,
+        staleTime: 2 * 60 * 1000,
+        gcTime: 5 * 60 * 1000,
     });
 };

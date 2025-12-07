@@ -10,7 +10,6 @@ import type {
 import type {BaseMedia, CastMember, Movie, MovieDetail, TVShow, TVShowDetail,} from '../../models/entity/Movie';
 
 export class MovieMapper {
-    // Map Movie DTO to Domain Movie
     static movieToDomain(dto: MovieDTO): Movie {
         return {
             id: dto.id,
@@ -28,7 +27,6 @@ export class MovieMapper {
         };
     }
 
-    // Map Movie Detail DTO to Domain MovieDetail
     static movieDetailToDomain(dto: MovieDetailDTO): MovieDetail {
         const director = dto.credits?.crew.find(member => member.job === 'Director')?.name || null;
         const cast: CastMember[] = dto.credits?.cast.slice(0, 10).map((member: CastDTO) => ({
@@ -53,7 +51,6 @@ export class MovieMapper {
         };
     }
 
-    // Map TV Show DTO to Domain TVShow
     static tvToDomain(dto: TVShowDTO): TVShow {
         return {
             id: dto.id,
@@ -71,7 +68,6 @@ export class MovieMapper {
         };
     }
 
-    // Map TV Show Detail DTO to Domain TVShowDetail
     static tvDetailToDomain(dto: TVShowDetailDTO): TVShowDetail {
         const creators = dto.created_by.map((c: { name: string }) => c.name);
         const cast: CastMember[] = dto.credits?.cast.slice(0, 10).map((member: CastDTO) => ({
@@ -96,7 +92,6 @@ export class MovieMapper {
         };
     }
 
-    // Map Search Result to BaseMedia (can be movie or TV)
     static searchResultToDomain(dto: SearchResultDTO): BaseMedia {
         if (dto.media_type === 'movie') {
             return {
@@ -131,7 +126,6 @@ export class MovieMapper {
         }
     }
 
-    // Batch mappers
     static movieListToDomain(dtos: MovieDTO[]): Movie[] {
         return dtos.map(this.movieToDomain);
     }

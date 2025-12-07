@@ -2,17 +2,7 @@ import SearchHeader from './components/SearchHeader';
 import ContentDashboard from './components/ContentDashboard';
 import { useMovieDashboardController } from './controllers';
 
-/**
- * MovieDashboard Page (View Layer)
- *
- * Main dashboard displaying:
- * - Search functionality
- * - Featured Today section (Movies/Series tabs)
- * - Premieres section
- *
- * Business logic is handled by useMovieDashboardController
- */
-const MovieDashboard = () => {
+const MovieDashboardPage = () => {
     const { handleMediaClick } = useMovieDashboardController();
 
     return (
@@ -23,4 +13,4 @@ const MovieDashboard = () => {
     );
 };
 
-export default MovieDashboard;
+export default MovieDashboardPage;

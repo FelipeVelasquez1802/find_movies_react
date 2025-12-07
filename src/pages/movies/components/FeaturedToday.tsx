@@ -9,7 +9,6 @@ interface FeaturedTodayProps {
     onMediaClick?: (media: BaseMedia) => void;
 }
 
-// Helper function to convert TVShow to BaseMedia format
 const tvShowToBaseMedia = (tvShow: TVShow): BaseMedia => ({
     ...tvShow,
     releaseDate: tvShow.firstAirDate,
@@ -18,7 +17,6 @@ const tvShowToBaseMedia = (tvShow: TVShow): BaseMedia => ({
 const FeaturedToday = ({ onMediaClick }: FeaturedTodayProps) => {
     const [activeTab, setActiveTab] = useState('movies');
 
-    // Fetch popular movies and TV shows
     const { data: moviesData, isLoading: moviesLoading, isError: moviesError } = usePopularMovies(1);
     const { data: tvData, isLoading: tvLoading, isError: tvError } = usePopularTVShows(1);
 

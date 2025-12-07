@@ -11,7 +11,6 @@ interface PremieresSectionProps {
 const PremieresSection = ({ year = 2023, onMediaClick }: PremieresSectionProps) => {
     const { data, isLoading, isError } = useDiscoverMovies(year, 1);
 
-    // Loading State
     if (isLoading) {
         return (
             <section className="px-8 py-6">
@@ -28,7 +27,6 @@ const PremieresSection = ({ year = 2023, onMediaClick }: PremieresSectionProps) 
         );
     }
 
-    // Error State
     if (isError) {
         return (
             <section className="px-8 py-6">
@@ -50,7 +48,6 @@ const PremieresSection = ({ year = 2023, onMediaClick }: PremieresSectionProps) 
         );
     }
 
-    // Empty State
     if (!data?.movies || data.movies.length === 0) {
         return (
             <section className="px-8 py-6">
@@ -64,7 +61,6 @@ const PremieresSection = ({ year = 2023, onMediaClick }: PremieresSectionProps) 
         );
     }
 
-    // Success State with Content
     return (
         <section className="px-8 py-6">
             <div className="flex items-center justify-between mb-4">
