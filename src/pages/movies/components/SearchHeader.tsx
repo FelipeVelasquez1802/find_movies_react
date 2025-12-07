@@ -49,7 +49,7 @@ const SearchHeader = ({ onResultClick }: SearchHeaderProps) => {
                     alt="FindMovies icon"
                     className="w-8 h-8"
                 />
-                <h1 className="px-2 text-2xl  text-gray-800">FindMovies</h1>
+                <h1 className="px-2 text-2xl">FindMovies</h1>
             </div>
 
             <div className="flex w-2/3 relative" ref={searchContainerRef}>

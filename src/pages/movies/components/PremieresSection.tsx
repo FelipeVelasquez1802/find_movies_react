@@ -68,7 +68,7 @@ const PremieresSection = ({ year = 2023, onMediaClick }: PremieresSectionProps) 
     return (
         <section className="px-8 py-6">
             <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-2xl font-bold text-primary">
                     Premieres and Announcements {year}
                 </h2>
                 <span className="text-sm text-gray-600">

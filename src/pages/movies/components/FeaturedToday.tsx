@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { usePopularMovies, usePopularTVShows } from '@/modules/movies/queries';
-import type { BaseMedia, TVShow } from '@/modules/movies/models/entity';
-import Tabs, { type Tab } from '@/core/components/Tabs';
+import {useState} from 'react';
+import {usePopularMovies, usePopularTVShows} from '@/modules/movies/queries';
+import type {BaseMedia, TVShow} from '@/modules/movies/models/entity';
+import Tabs, {type Tab} from '@/core/components/Tabs';
 import MediaCard from '@/core/components/card/MediaCard';
 import HorizontalScrollContainer from '@/core/components/HorizontalScrollContainer';
 
@@ -98,7 +98,9 @@ const FeaturedToday = ({ onMediaClick }: FeaturedTodayProps) => {
 
     return (
         <section className="px-8 py-6">
-            <h2 className="text-2xl font-bold text-yellow-500 mb-4">Featured Today</h2>
+            <h2 className="text-2xl font-bold text-primary mb-4">
+                Featured Today
+            </h2>
             <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
         </section>
     );

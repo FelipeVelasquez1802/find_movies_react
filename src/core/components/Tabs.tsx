@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import {type ReactNode} from 'react';
 
 export interface Tab {
     id: string;
@@ -16,22 +16,28 @@ interface TabsProps {
 const Tabs = ({ tabs, activeTab, onTabChange, className = '' }: TabsProps) => {
     return (
         <div className={className}>
-            <div className="flex border-b border-gray-200">
+            <div className="flex relative">
                 {tabs.map((tab) => (
-                    <button
-                        key={tab.id}
-                        onClick={() => onTabChange(tab.id)}
-                        className={`
-                            px-6 py-3 font-medium text-sm transition-colors relative
-                            ${activeTab === tab.id
-                                ? 'text-white border-b-2 border-white'
+                    <div className="flex flex-col items-center">
+                        <button
+                            key={tab.id}
+                            onClick={() => onTabChange(tab.id)}
+                            className={`
+                                px-6 py-3 font-medium text-md transition-colors relative
+                                ${activeTab === tab.id
+                                ? 'text-white'
                                 : 'text-gray-600 hover:text-gray-800'
                             }
-                        `}
-                    >
-                        {tab.label}
-                    </button>
+                            `}
+                        >
+                            {tab.label}
+                        </button>
+                        {activeTab === tab.id && (
+                            <span className="block bg-white w-full h-[0.3rem] rounded z-10"/>
+                        )}
+                    </div>
                 ))}
+                <span className="absolute bottom-[0.1rem] block bg-gray-800 w-full h-[0.1rem] rounded"/>
             </div>
 
             <div className="mt-6">

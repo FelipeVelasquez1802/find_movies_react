@@ -1,3 +1,23 @@
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
+@import "tailwindcss";
+
+:root {
+    font-family: 'Lato', sans-serif;
+}
+
+@theme {
+    /* Colores principales */
+    --color-primary: #fdd835;
+    --color-secondary: #ffee58;
+    --color-accent: #ff8f00;
+
+    /* Grises y negro */
+    --color-dark: #000000;
+    --color-gray-dark: #212121;
+    --color-gray-light: #f5f5f5;
+
+    /* Gradiente */
+    --color-gradient-from: #ffee58;
+    --color-gradient-to: #ff8f00;
 }
