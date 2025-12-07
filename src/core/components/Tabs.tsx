@@ -16,7 +16,6 @@ interface TabsProps {
 const Tabs = ({ tabs, activeTab, onTabChange, className = '' }: TabsProps) => {
     return (
         <div className={className}>
-            {/* Tab Headers */}
             <div className="flex border-b border-gray-200">
                 {tabs.map((tab) => (
                     <button
@@ -25,7 +24,7 @@ const Tabs = ({ tabs, activeTab, onTabChange, className = '' }: TabsProps) => {
                         className={`
                             px-6 py-3 font-medium text-sm transition-colors relative
                             ${activeTab === tab.id
-                                ? 'text-blue-600 border-b-2 border-blue-600'
+                                ? 'text-white border-b-2 border-white'
                                 : 'text-gray-600 hover:text-gray-800'
                             }
                         `}
@@ -35,7 +34,6 @@ const Tabs = ({ tabs, activeTab, onTabChange, className = '' }: TabsProps) => {
                 ))}
             </div>
 
-            {/* Tab Content */}
             <div className="mt-6">
                 {tabs.find((tab) => tab.id === activeTab)?.content}
             </div>

@@ -9,16 +9,8 @@ interface ContentDashboardProps {
 const ContentDashboard = ({ onMediaClick }: ContentDashboardProps) => {
     return (
         <main className="flex-1 pb-8">
-            {/* Featured Today Section */}
             <FeaturedToday onMediaClick={onMediaClick} />
-
-            {/* Premieres and Announcements 2023 Section */}
-            <PremieresSection year={2023} onMediaClick={onMediaClick} />
-
-            {/* TODO: Add more sections if needed */}
-            {/* - Top Rated */}
-            {/* - Trending This Week */}
-            {/* - By Genre */}
+            <PremieresSection year={2025} onMediaClick={onMediaClick} />
         </main>
     );
 };

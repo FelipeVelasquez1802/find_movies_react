@@ -98,7 +98,7 @@ const FeaturedToday = ({ onMediaClick }: FeaturedTodayProps) => {
 
     return (
         <section className="px-8 py-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Featured Today</h2>
+            <h2 className="text-2xl font-bold text-yellow-500 mb-4">Featured Today</h2>
             <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
         </section>
     );

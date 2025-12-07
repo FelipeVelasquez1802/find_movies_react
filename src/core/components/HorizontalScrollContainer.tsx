@@ -25,7 +25,6 @@ const HorizontalScrollContainer = ({ children, className = '' }: HorizontalScrol
 
     return (
         <div className={`relative group ${className}`}>
-            {/* Left Arrow */}
             <button
                 onClick={() => scroll('left')}
                 className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 hover:bg-opacity-75 text-white p-3 rounded-r-lg opacity-0 group-hover:opacity-100 transition-opacity"
@@ -46,7 +45,6 @@ const HorizontalScrollContainer = ({ children, className = '' }: HorizontalScrol
                 </svg>
             </button>
 
-            {/* Scrollable Content */}
             <div
                 ref={scrollRef}
                 className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth px-1 py-4"
@@ -58,7 +56,6 @@ const HorizontalScrollContainer = ({ children, className = '' }: HorizontalScrol
                 {children}
             </div>
 
-            {/* Right Arrow */}
             <button
                 onClick={() => scroll('right')}
                 className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 hover:bg-opacity-75 text-white p-3 rounded-l-lg opacity-0 group-hover:opacity-100 transition-opacity"
