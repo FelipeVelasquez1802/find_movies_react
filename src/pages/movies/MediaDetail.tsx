@@ -1,23 +1,28 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { useMovieDetail, useTVShowDetail } from '@/modules/movies/queries';
 import { getBackdropUrl, getPosterUrl, getProfileUrl } from '@/core/config/tmdbConfig';
-import type { MovieDetail, TVShowDetail } from '@/modules/movies/models/entity';
+import { useMediaDetailController } from './controllers';
 
+/**
+ * MediaDetail Page (View Layer)
+ *
+ * Displays detailed information about a movie or TV show:
+ * - Backdrop and poster images
+ * - Title, tagline, rating, year, runtime/seasons
+ * - Genres, overview, director/creators
+ * - Cast with photos
+ * - Additional info (budget, revenue, status)
+ *
+ * Business logic is handled by useMediaDetailController
+ */
 const MediaDetail = () => {
-    const { type, id } = useParams<{ type: string; id: string }>();
-    const navigate = useNavigate();
-
-    const mediaId = parseInt(id || '0', 10);
-    const isMovie = type === 'movie';
-
-    // Fetch movie or TV show details based on type
-    // Note: We call both hooks but only use one based on type
-    const movieQuery = useMovieDetail(mediaId);
-    const tvQuery = useTVShowDetail(mediaId);
-
-    const isLoading = isMovie ? movieQuery.isLoading : tvQuery.isLoading;
-    const isError = isMovie ? movieQuery.isError : tvQuery.isError;
-    const data: MovieDetail | TVShowDetail | undefined = isMovie ? movieQuery.data : tvQuery.data;
+    const {
+        isLoading,
+        isError,
+        data,
+        handleBackClick,
+        getYear,
+        getRuntime,
+        getNumberOfSeasons,
+    } = useMediaDetailController();
 
     // Loading State
     if (isLoading) {
@@ -38,7 +43,7 @@ const MediaDetail = () => {
                 <div className="text-center">
                     <p className="text-red-500 text-xl mb-4">Error loading details</p>
                     <button
-                        onClick={() => navigate('/')}
+                        onClick={handleBackClick}
                         className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                     >
                         Go Back Home
@@ -56,18 +61,17 @@ const MediaDetail = () => {
         ? getPosterUrl(data.posterPath)
         : 'https://via.placeholder.com/342x513?text=No+Image';
 
-    // Get year from releaseDate (Movie) or firstAirDate (TVShow)
-    const releaseDate = 'releaseDate' in data ? data.releaseDate : ('firstAirDate' in data ? data.firstAirDate : '');
-    const year = releaseDate ? new Date(releaseDate).getFullYear() : 'N/A';
-    const runtime = 'runtime' in data ? data.runtime : null;
-    const numberOfSeasons = 'numberOfSeasons' in data ? data.numberOfSeasons : null;
+    // Get computed values from controller
+    const year = getYear();
+    const runtime = getRuntime();
+    const numberOfSeasons = getNumberOfSeasons();
 
     return (
         <div className="min-h-screen bg-gray-900 text-white">
             {/* Back Button */}
             <div className="absolute top-4 left-4 z-20">
                 <button
-                    onClick={() => navigate('/')}
+                    onClick={handleBackClick}
                     className="px-4 py-2 bg-black bg-opacity-50 hover:bg-opacity-75 rounded-lg flex items-center gap-2 transition-colors"
                 >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

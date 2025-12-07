@@ -10,14 +10,12 @@ interface SearchResultsProps {
 }
 
 const SearchResults = ({ results, isLoading, isError, query, onResultClick }: SearchResultsProps) => {
-    // Don't show dropdown if no query
     if (!query.trim()) {
         return null;
     }
 
     return (
         <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto z-50">
-            {/* Loading State */}
             {isLoading && (
                 <div className="p-4 text-center text-gray-600">
                     <div className="flex items-center justify-center gap-2">
@@ -27,21 +25,18 @@ const SearchResults = ({ results, isLoading, isError, query, onResultClick }: Se
                 </div>
             )}
 
-            {/* Error State */}
             {isError && !isLoading && (
                 <div className="p-4 text-center text-red-600">
                     <p>Error loading results. Please try again.</p>
                 </div>
             )}
 
-            {/* Empty State */}
             {!isLoading && !isError && results.length === 0 && (
                 <div className="p-4 text-center text-gray-600">
                     <p>No results found for "{query}"</p>
                 </div>
             )}
 
-            {/* Results List */}
             {!isLoading && !isError && results.length > 0 && (
                 <div className="divide-y divide-gray-200">
                     {results.slice(0, 5).map((media) => (
