@@ -1,0 +1,1 @@
+export {useMediaDetailController} from '../../detail/controllers/useMediaDetailController.ts';

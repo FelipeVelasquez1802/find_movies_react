@@ -1,5 +1,5 @@
 import type { BaseMedia } from '@/modules/movies/models/entity';
-import { getPosterUrl } from '@/core/config/tmdbConfig';
+import { getPosterUrl } from '@/core/config/tmdbConfig.ts';
 
 interface SearchResultItemProps {
     media: BaseMedia;

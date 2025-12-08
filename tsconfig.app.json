@@ -20,9 +20,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@/core/*": ["src/core/*"],
-      "@/modules/*": ["src/modules/*"],
-      "@/pages/*": ["src/pages/*"]
+      "@core/*": ["src/core/*"],
+      "@shared/*": ["src/shared/*"],
+      "@modules/*": ["src/modules/*"],
+      "@pages/*": ["src/pages/*"]
     },
 
     /* Linting */

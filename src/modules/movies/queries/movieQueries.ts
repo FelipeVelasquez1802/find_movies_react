@@ -1,5 +1,5 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
-import { tmdbRepository } from '../services/tmdb.repository';
+import { movieRepository } from '../dependencies';
 import type { Movie, MovieDetail, TVShow, TVShowDetail, BaseMedia } from '../models/entity';
 
 export const MOVIE_QUERY_KEYS = {
@@ -21,7 +21,7 @@ export const MOVIE_QUERY_KEYS = {
 export const usePopularMovies = (page: number = 1): UseQueryResult<{ movies: Movie[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.popularMovies(page),
-        queryFn: () => tmdbRepository.getPopularMovies(page),
+        queryFn: () => movieRepository.getPopularMovies(page),
         staleTime: 5 * 60 * 1000,
         gcTime: 10 * 60 * 1000,
     });
@@ -30,7 +30,7 @@ export const usePopularMovies = (page: number = 1): UseQueryResult<{ movies: Mov
 export const useTopRatedMovies = (page: number = 1): UseQueryResult<{ movies: Movie[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.topRatedMovies(page),
-        queryFn: () => tmdbRepository.getTopRatedMovies(page),
+        queryFn: () => movieRepository.getTopRatedMovies(page),
         staleTime: 5 * 60 * 1000,
         gcTime: 10 * 60 * 1000,
     });
@@ -39,7 +39,7 @@ export const useTopRatedMovies = (page: number = 1): UseQueryResult<{ movies: Mo
 export const useNowPlayingMovies = (page: number = 1): UseQueryResult<{ movies: Movie[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.nowPlayingMovies(page),
-        queryFn: () => tmdbRepository.getNowPlayingMovies(page),
+        queryFn: () => movieRepository.getNowPlayingMovies(page),
         staleTime: 5 * 60 * 1000,
         gcTime: 10 * 60 * 1000,
     });
@@ -48,7 +48,7 @@ export const useNowPlayingMovies = (page: number = 1): UseQueryResult<{ movies: 
 export const useDiscoverMovies = (year?: number, page: number = 1): UseQueryResult<{ movies: Movie[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.discoverMovies(year, page),
-        queryFn: () => tmdbRepository.discoverMovies({ year, page }),
+        queryFn: () => movieRepository.discoverMovies({ year, page }),
         staleTime: 5 * 60 * 1000,
         gcTime: 10 * 60 * 1000,
     });
@@ -57,7 +57,7 @@ export const useDiscoverMovies = (year?: number, page: number = 1): UseQueryResu
 export const useMovieDetail = (movieId: number): UseQueryResult<MovieDetail, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.movieDetail(movieId),
-        queryFn: () => tmdbRepository.getMovieDetail(movieId),
+        queryFn: () => movieRepository.getMovieDetail(movieId),
         staleTime: 10 * 60 * 1000,
         gcTime: 30 * 60 * 1000,
     });
@@ -66,7 +66,7 @@ export const useMovieDetail = (movieId: number): UseQueryResult<MovieDetail, Err
 export const usePopularTVShows = (page: number = 1): UseQueryResult<{ shows: TVShow[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.popularTVShows(page),
-        queryFn: () => tmdbRepository.getPopularTVShows(page),
+        queryFn: () => movieRepository.getPopularTVShows(page),
         staleTime: 5 * 60 * 1000,
         gcTime: 10 * 60 * 1000,
     });
@@ -75,7 +75,7 @@ export const usePopularTVShows = (page: number = 1): UseQueryResult<{ shows: TVS
 export const useTopRatedTVShows = (page: number = 1): UseQueryResult<{ shows: TVShow[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.topRatedTVShows(page),
-        queryFn: () => tmdbRepository.getTopRatedTVShows(page),
+        queryFn: () => movieRepository.getTopRatedTVShows(page),
         staleTime: 5 * 60 * 1000,
         gcTime: 10 * 60 * 1000,
     });
@@ -84,7 +84,7 @@ export const useTopRatedTVShows = (page: number = 1): UseQueryResult<{ shows: TV
 export const useOnTheAirTVShows = (page: number = 1): UseQueryResult<{ shows: TVShow[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.onTheAirTVShows(page),
-        queryFn: () => tmdbRepository.getOnTheAirTVShows(page),
+        queryFn: () => movieRepository.getOnTheAirTVShows(page),
         staleTime: 5 * 60 * 1000,
         gcTime: 10 * 60 * 1000,
     });
@@ -93,7 +93,7 @@ export const useOnTheAirTVShows = (page: number = 1): UseQueryResult<{ shows: TV
 export const useDiscoverTVShows = (year?: number, page: number = 1): UseQueryResult<{ shows: TVShow[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.discoverTVShows(year, page),
-        queryFn: () => tmdbRepository.discoverTVShows({ year, page }),
+        queryFn: () => movieRepository.discoverTVShows({ year, page }),
         staleTime: 5 * 60 * 1000,
         gcTime: 10 * 60 * 1000,
     });
@@ -102,7 +102,7 @@ export const useDiscoverTVShows = (year?: number, page: number = 1): UseQueryRes
 export const useTVShowDetail = (tvId: number): UseQueryResult<TVShowDetail, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.tvShowDetail(tvId),
-        queryFn: () => tmdbRepository.getTVShowDetail(tvId),
+        queryFn: () => movieRepository.getTVShowDetail(tvId),
         staleTime: 10 * 60 * 1000,
         gcTime: 30 * 60 * 1000,
     });
@@ -111,7 +111,7 @@ export const useTVShowDetail = (tvId: number): UseQueryResult<TVShowDetail, Erro
 export const useSearchMulti = (query: string, page: number = 1): UseQueryResult<{ results: BaseMedia[]; totalPages: number }, Error> => {
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.searchMulti(query, page),
-        queryFn: () => tmdbRepository.searchMulti({ query, page }),
+        queryFn: () => movieRepository.searchMulti({ query, page }),
         enabled: query.length > 0,
         staleTime: 2 * 60 * 1000,
         gcTime: 5 * 60 * 1000,

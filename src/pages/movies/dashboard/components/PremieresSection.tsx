@@ -1,7 +1,7 @@
 import { useDiscoverMovies } from '@/modules/movies/queries';
 import type { BaseMedia } from '@/modules/movies/models/entity';
-import MediaCard from '@/core/components/card/MediaCard';
-import HorizontalScrollContainer from '@/core/components/HorizontalScrollContainer';
+import MediaCard from '@/core/components/card/MediaCard.tsx';
+import HorizontalScrollContainer from '@/core/components/HorizontalScrollContainer.tsx';
 
 interface PremieresSectionProps {
     year?: number;

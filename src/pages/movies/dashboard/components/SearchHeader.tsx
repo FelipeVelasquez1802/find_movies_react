@@ -1,9 +1,9 @@
-import findMoviesLogo from '../../../assets/find-movies-icon.svg';
+import findMoviesLogo from '../../../../assets/find-movies-icon.svg';
 import {useEffect, useRef, useState} from 'react';
 import {useDebounce} from '@/core/hooks';
 import {useSearchMulti} from '@/modules/movies/queries';
 import type {BaseMedia} from '@/modules/movies/models/entity';
-import SearchResults from './SearchResults';
+import SearchResults from './SearchResults.tsx';
 import SearchInput from "@/core/components/input/SearchInput.tsx";
 
 interface SearchHeaderProps {

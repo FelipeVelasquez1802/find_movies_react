@@ -1,5 +1,5 @@
 import type { BaseMedia } from '@/modules/movies/models/entity';
-import SearchResultItem from './SearchResultItem';
+import SearchResultItem from './SearchResultItem.tsx';
 
 interface SearchResultsProps {
     results: BaseMedia[];

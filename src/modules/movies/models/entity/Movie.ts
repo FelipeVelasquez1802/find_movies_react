@@ -28,6 +28,8 @@ export interface MovieDetail extends Movie {
     homepage: string | null;
     genres: Genre[];
     director: string | null;
+    screenplay: string | null;
+    productionCountries: string[];
     cast: CastMember[];
 }
 

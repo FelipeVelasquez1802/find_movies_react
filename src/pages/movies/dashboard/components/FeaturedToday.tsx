@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import {usePopularMovies, usePopularTVShows} from '@/modules/movies/queries';
 import type {BaseMedia, TVShow} from '@/modules/movies/models/entity';
-import Tabs, {type Tab} from '@/core/components/Tabs';
-import MediaCard from '@/core/components/card/MediaCard';
-import HorizontalScrollContainer from '@/core/components/HorizontalScrollContainer';
+import Tabs, {type Tab} from '@/core/components/Tabs.tsx';
+import MediaCard from '@/core/components/card/MediaCard.tsx';
+import HorizontalScrollContainer from '@/core/components/HorizontalScrollContainer.tsx';
 
 interface FeaturedTodayProps {
     onMediaClick?: (media: BaseMedia) => void;

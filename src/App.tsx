@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MovieDashboardPage from '@/pages/movies/MovieDashboardPage.tsx';
-import MediaDetailPage from '@/pages/movies/MediaDetailPage.tsx';
+import MovieDashboardPage from '@/pages/movies/dashboard/MovieDashboardPage.tsx';
+import MediaDetailPage from '@/pages/movies/detail/MediaDetailPage.tsx';
 
 function App() {
     return (

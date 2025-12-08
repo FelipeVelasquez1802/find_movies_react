@@ -1,5 +1,5 @@
-import FeaturedToday from './FeaturedToday';
-import PremieresSection from './PremieresSection';
+import FeaturedToday from './FeaturedToday.tsx';
+import PremieresSection from './PremieresSection.tsx';
 import type { BaseMedia } from '@/modules/movies/models/entity';
 
 interface ContentDashboardProps {

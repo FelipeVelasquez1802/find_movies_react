@@ -29,6 +29,9 @@ export class MovieMapper {
 
     static movieDetailToDomain(dto: MovieDetailDTO): MovieDetail {
         const director = dto.credits?.crew.find(member => member.job === 'Director')?.name || null;
+        const screenplayWriters = dto.credits?.crew.filter(member => member.job === 'Screenplay').map(m => m.name) || [];
+        const screenplay = screenplayWriters.length > 0 ? screenplayWriters.join(', ') : null;
+        const productionCountries = dto.production_countries.map(country => country.name);
         const cast: CastMember[] = dto.credits?.cast.slice(0, 10).map((member: CastDTO) => ({
             id: member.id,
             name: member.name,
@@ -47,6 +50,8 @@ export class MovieMapper {
             homepage: dto.homepage,
             genres: dto.genres.map((g: GenreDTO) => ({id: g.id, name: g.name})),
             director,
+            screenplay,
+            productionCountries,
             cast,
         };
     }

@@ -1,5 +1,5 @@
-import SearchHeader from './components/SearchHeader';
-import ContentDashboard from './components/ContentDashboard';
+import SearchHeader from '@/pages/movies/dashboard/components/SearchHeader.tsx';
+import ContentDashboard from '@/pages/movies/dashboard/components/ContentDashboard.tsx';
 import { useMovieDashboardController } from './controllers';
 
 const MovieDashboardPage = () => {
