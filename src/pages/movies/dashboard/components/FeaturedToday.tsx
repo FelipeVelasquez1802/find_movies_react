@@ -4,6 +4,7 @@ import type {BaseMedia, TVShow} from '@/modules/movies/models/entity';
 import Tabs, {type Tab} from '@/core/components/Tabs.tsx';
 import MediaCard from '@/core/components/card/MediaCard.tsx';
 import HorizontalScrollContainer from '@/core/components/HorizontalScrollContainer.tsx';
+import {ErrorState} from '@/shared/components';
 
 interface FeaturedTodayProps {
     onMediaClick?: (media: BaseMedia) => void;
@@ -37,19 +38,7 @@ const FeaturedToday = ({ onMediaClick }: FeaturedTodayProps) => {
         }
 
         if (isError) {
-            return (
-                <div className="flex items-center justify-center py-20">
-                    <div className="text-center">
-                        <p className="text-red-600 mb-4">Error loading content</p>
-                        <button
-                            onClick={() => window.location.reload()}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                        >
-                            Retry
-                        </button>
-                    </div>
-                </div>
-            );
+            return <ErrorState variant="section" />;
         }
 
         if (!items || items.length === 0) {

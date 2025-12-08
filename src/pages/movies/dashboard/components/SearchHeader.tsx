@@ -1,5 +1,6 @@
 import findMoviesLogo from '../../../../assets/find-movies-icon.svg';
 import {useEffect, useRef, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {useDebounce} from '@/core/hooks';
 import {useSearchMulti} from '@/modules/movies/queries';
 import type {BaseMedia} from '@/modules/movies/models/entity';
@@ -11,6 +12,7 @@ interface SearchHeaderProps {
 }
 
 const SearchHeader = ({ onResultClick }: SearchHeaderProps) => {
+    const navigate = useNavigate();
     const [search, setSearch] = useState('');
     const [showResults, setShowResults] = useState(false);
     const searchContainerRef = useRef<HTMLDivElement>(null);
@@ -18,6 +20,10 @@ const SearchHeader = ({ onResultClick }: SearchHeaderProps) => {
     const debouncedSearch = useDebounce(search, 300);
 
     const { data, isLoading, isError } = useSearchMulti(debouncedSearch, 1);
+
+    const handleLogoClick = () => {
+        navigate('/');
+    };
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -43,7 +49,10 @@ const SearchHeader = ({ onResultClick }: SearchHeaderProps) => {
 
     return (
         <div className="flex justify-around px-16 py-8 shadow-sm">
-            <div className="flex w-1/3 justify-center items-center p-2">
+            <div
+                className="flex w-1/3 justify-center items-center p-2 cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={handleLogoClick}
+            >
                 <img
                     src={findMoviesLogo}
                     alt="FindMovies icon"

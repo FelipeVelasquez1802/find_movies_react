@@ -17,7 +17,7 @@ const SearchInput = (
 ) => {
     return (
         <div
-            className="bg-white flex flex-row items-center gap-2 px-2 py-3 rounded-md border focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500"
+            className="bg-white flex flex-row items-center gap-2 px-2 py-3 rounded-md border focus-within:ring-2 focus-within:ring-primary focus-within:border-primary"
         >
             <Search
                 color="gray"

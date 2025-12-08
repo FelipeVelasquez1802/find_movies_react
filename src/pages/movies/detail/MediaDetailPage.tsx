@@ -3,6 +3,7 @@ import {useMediaDetailController} from "@/pages/movies/detail/controllers";
 import HeaderMovieDetail from "@/pages/movies/detail/components/HeaderMovieDetail.tsx";
 import ContentMovieDetail from "@/pages/movies/detail/components/ContentMovieDetail.tsx";
 import SearchHeader from "@/pages/movies/dashboard/components/SearchHeader.tsx";
+import {ErrorState} from "@/shared/components";
 import {useNavigate} from "react-router-dom";
 import type {BaseMedia} from "@/modules/movies";
 
@@ -13,7 +14,6 @@ const MediaDetailPage = () => {
         isError,
         data,
         isMovie,
-        handleBackClick,
         getYear,
         getRuntime,
     } = useMediaDetailController();
@@ -35,16 +35,9 @@ const MediaDetailPage = () => {
 
     if (isError || !data) {
         return (
-            <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-                <div className="text-center">
-                    <p className="text-red-500 text-xl mb-4">Error loading details</p>
-                    <button
-                        onClick={handleBackClick}
-                        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                    >
-                        Go Back Home
-                    </button>
-                </div>
+            <div className="flex flex-col min-h-screen">
+                <SearchHeader onResultClick={handleMediaClick}/>
+                <ErrorState variant="page"/>
             </div>
         );
     }
