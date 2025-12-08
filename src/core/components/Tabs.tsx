@@ -18,9 +18,8 @@ const Tabs = ({ tabs, activeTab, onTabChange, className = '' }: TabsProps) => {
         <div className={className}>
             <div className="flex relative">
                 {tabs.map((tab) => (
-                    <div className="flex flex-col items-center">
+                    <div key={tab.id} className="flex flex-col items-center">
                         <button
-                            key={tab.id}
                             onClick={() => onTabChange(tab.id)}
                             className={`
                                 px-6 py-3 font-medium text-md transition-colors relative
