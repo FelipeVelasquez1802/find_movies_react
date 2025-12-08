@@ -5,6 +5,7 @@ import Tabs, {type Tab} from '@/core/components/Tabs.tsx';
 import MediaCard from '@/core/components/card/MediaCard.tsx';
 import HorizontalScrollContainer from '@/core/components/HorizontalScrollContainer.tsx';
 import {ErrorState} from '@/shared/components';
+import FeaturedTodaySkeleton from './FeaturedTodaySkeleton';
 
 interface FeaturedTodayProps {
     onMediaClick?: (media: BaseMedia) => void;
@@ -20,6 +21,10 @@ const FeaturedToday = ({ onMediaClick }: FeaturedTodayProps) => {
 
     const { data: moviesData, isLoading: moviesLoading, isError: moviesError } = usePopularMovies(1);
     const { data: tvData, isLoading: tvLoading, isError: tvError } = usePopularTVShows(1);
+
+    if (moviesLoading && tvLoading) {
+        return <FeaturedTodaySkeleton />;
+    }
 
     const renderContent = (
         items: BaseMedia[] | undefined,
