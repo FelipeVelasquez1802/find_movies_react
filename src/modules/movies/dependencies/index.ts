@@ -1,0 +1,1 @@
+export { movieRepository, movieServiceContainer } from './container';
