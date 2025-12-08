@@ -2,6 +2,8 @@ import {getPosterUrl} from '@/core/config/tmdbConfig.ts';
 import {useMediaDetailController} from "@/pages/movies/detail/controllers";
 import HeaderMovieDetail from "@/pages/movies/detail/components/HeaderMovieDetail.tsx";
 import ContentMovieDetail from "@/pages/movies/detail/components/ContentMovieDetail.tsx";
+import HeaderMovieDetailSkeleton from "@/pages/movies/detail/components/HeaderMovieDetailSkeleton.tsx";
+import ContentMovieDetailSkeleton from "@/pages/movies/detail/components/ContentMovieDetailSkeleton.tsx";
 import SearchHeader from "@/pages/movies/dashboard/components/SearchHeader.tsx";
 import {ErrorState} from "@/shared/components";
 import {useNavigate} from "react-router-dom";
@@ -24,11 +26,10 @@ const MediaDetailPage = () => {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-                <div className="flex items-center gap-3 text-white">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-                    <span className="text-lg">Loading...</span>
-                </div>
+            <div className="flex flex-col min-h-screen">
+                <SearchHeader onResultClick={handleMediaClick} />
+                <HeaderMovieDetailSkeleton />
+                <ContentMovieDetailSkeleton />
             </div>
         );
     }
