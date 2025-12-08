@@ -3,6 +3,7 @@ import type { BaseMedia } from '@/modules/movies/models/entity';
 import MediaCard from '@/core/components/card/MediaCard.tsx';
 import HorizontalScrollContainer from '@/core/components/HorizontalScrollContainer.tsx';
 import {ErrorState} from '@/shared/components';
+import PremieresSectionSkeleton from './PremieresSectionSkeleton';
 
 interface PremieresSectionProps {
     year?: number;
@@ -13,19 +14,7 @@ const PremieresSection = ({ year = 2023, onMediaClick }: PremieresSectionProps) 
     const { data, isLoading, isError } = useDiscoverMovies(year, 1);
 
     if (isLoading) {
-        return (
-            <section className="px-8 py-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                    Premieres and Announcements {year}
-                </h2>
-                <div className="flex items-center justify-center py-20">
-                    <div className="flex items-center gap-3 text-gray-600">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-                        <span>Loading...</span>
-                    </div>
-                </div>
-            </section>
-        );
+        return <PremieresSectionSkeleton />;
     }
 
     if (isError) {
