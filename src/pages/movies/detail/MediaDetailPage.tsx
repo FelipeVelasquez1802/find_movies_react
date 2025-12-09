@@ -47,7 +47,7 @@ const MediaDetailPage = () => {
     const posterUrl = getPosterUrl(data.posterPath);
     const year = getYear();
     const runtime = getRuntime();
-    const duration = formatDuration(runtime);
+    const duration = formatDuration(runtime ?? undefined);
     const releaseDate = getMediaReleaseDate(data);
 
     return (

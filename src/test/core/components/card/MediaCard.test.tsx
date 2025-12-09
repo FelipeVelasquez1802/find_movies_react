@@ -8,8 +8,14 @@ describe('MediaCard', () => {
     const mockMedia: BaseMedia = {
         id: 1,
         title: 'Test Movie',
+        originalTitle: 'Test Movie',
         posterPath: '/test-poster.jpg',
+        backdropPath: '/test-backdrop.jpg',
+        overview: 'Test movie overview',
         voteAverage: 8.5,
+        voteCount: 1000,
+        popularity: 50.5,
+        genreIds: [28, 12],
         releaseDate: '2024-01-01',
         mediaType: 'movie',
     };

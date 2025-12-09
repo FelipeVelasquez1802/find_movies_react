@@ -77,6 +77,7 @@ export const Interactive: Story = {
     );
   },
   args: {
+    search: '',
     placeholder: 'Try typing something...',
   },
 };

@@ -10,10 +10,10 @@ describe('ContentMovieDetail', () => {
     ];
 
     const mockStars: CastMember[] = [
-        { id: 1, name: 'Keanu Reeves', character: 'Neo', profilePath: null },
-        { id: 2, name: 'Laurence Fishburne', character: 'Morpheus', profilePath: null },
-        { id: 3, name: 'Carrie-Anne Moss', character: 'Trinity', profilePath: null },
-        { id: 4, name: 'Hugo Weaving', character: 'Agent Smith', profilePath: null },
+        { id: 1, name: 'Keanu Reeves', character: 'Neo', profilePath: null, order: 0 },
+        { id: 2, name: 'Laurence Fishburne', character: 'Morpheus', profilePath: null, order: 1 },
+        { id: 3, name: 'Carrie-Anne Moss', character: 'Trinity', profilePath: null, order: 2 },
+        { id: 4, name: 'Hugo Weaving', character: 'Agent Smith', profilePath: null, order: 3 },
     ];
 
     const defaultProps = {
