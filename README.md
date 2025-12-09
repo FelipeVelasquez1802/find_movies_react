@@ -89,6 +89,11 @@ A modern, responsive web application for discovering movies and TV shows using t
 ### Styling
 - **[Tailwind CSS 4.0](https://tailwindcss.com/)** - Utility-first CSS framework
 
+### Testing & Documentation
+- **[Vitest](https://vitest.dev/)** - Unit testing framework
+- **[React Testing Library](https://testing-library.com/react)** - Component testing
+- **[Storybook 10](https://storybook.js.org/)** - Component documentation and development
+
 ### API
 - **[TMDB API](https://www.themoviedb.org/documentation/api)** - Movie & TV data
 
@@ -361,6 +366,15 @@ npm run preview      # Preview production build
 
 # Code Quality
 npm run lint         # Run ESLint
+
+# Testing
+npm test             # Run tests with Vitest
+npm run test:ui      # Run tests with Vitest UI
+npm run test:coverage  # Generate test coverage report
+
+# Storybook
+npm run storybook    # Start Storybook dev server (http://localhost:6006)
+npm run build-storybook  # Build Storybook for production
 ```
 
 ---
