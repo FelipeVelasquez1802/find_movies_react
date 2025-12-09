@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useMemo} from 'react';
 import {usePopularMovies, usePopularTVShows} from '@/modules/movies/queries';
 import type {BaseMedia, TVShow} from '@/modules/movies/models/entity';
 import Tabs, {type Tab} from '@/core/components/Tabs.tsx';
@@ -21,6 +21,11 @@ const FeaturedToday = ({ onMediaClick }: FeaturedTodayProps) => {
 
     const { data: moviesData, isLoading: moviesLoading, isError: moviesError } = usePopularMovies(1);
     const { data: tvData, isLoading: tvLoading, isError: tvError } = usePopularTVShows(1);
+
+    const transformedTVShows = useMemo(
+        () => tvData?.shows.map(tvShowToBaseMedia),
+        [tvData?.shows]
+    );
 
     if (moviesLoading && tvLoading) {
         return <FeaturedTodaySkeleton />;
@@ -81,7 +86,7 @@ const FeaturedToday = ({ onMediaClick }: FeaturedTodayProps) => {
             id: 'series',
             label: 'Series',
             content: renderContent(
-                tvData?.shows.map(tvShowToBaseMedia),
+                transformedTVShows,
                 tvLoading,
                 tvError
             ),

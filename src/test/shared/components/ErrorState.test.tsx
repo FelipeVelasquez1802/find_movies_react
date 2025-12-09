@@ -58,18 +58,18 @@ describe('ErrorState', () => {
         expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
-    it('renders SVG icon', () => {
-        const { container } = render(<ErrorState />);
+    it('renders error image icon', () => {
+        render(<ErrorState />);
 
-        const svg = container.querySelector('svg');
-        expect(svg).toBeInTheDocument();
-        expect(svg).toHaveAttribute('width', '150');
+        const img = screen.getByAltText('Connection error');
+        expect(img).toBeInTheDocument();
+        expect(img).toHaveClass('w-60');
     });
 
-    it('renders larger SVG for page variant', () => {
-        const { container } = render(<ErrorState variant="page" />);
+    it('renders larger image for page variant', () => {
+        render(<ErrorState variant="page" />);
 
-        const svg = container.querySelector('svg');
-        expect(svg).toHaveAttribute('width', '200');
+        const img = screen.getByAltText('Connection error');
+        expect(img).toHaveClass('w-80');
     });
 });

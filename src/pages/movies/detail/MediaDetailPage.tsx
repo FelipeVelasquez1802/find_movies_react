@@ -6,6 +6,7 @@ import HeaderMovieDetailSkeleton from "@/pages/movies/detail/components/HeaderMo
 import ContentMovieDetailSkeleton from "@/pages/movies/detail/components/ContentMovieDetailSkeleton.tsx";
 import SearchHeader from "@/pages/movies/dashboard/components/SearchHeader.tsx";
 import {ErrorState} from "@/shared/components";
+import {formatDuration, getMediaReleaseDate} from "@/shared/utils";
 import {useNavigate} from "react-router-dom";
 import type {BaseMedia} from "@/modules/movies";
 
@@ -43,30 +44,11 @@ const MediaDetailPage = () => {
         );
     }
 
-    const posterUrl = data.posterPath
-        ? getPosterUrl(data.posterPath)
-        : 'https://via.placeholder.com/342x513?text=No+Image';
-
+    const posterUrl = getPosterUrl(data.posterPath);
     const year = getYear();
     const runtime = getRuntime();
-
-    const formatDuration = (): string | undefined => {
-        if (runtime) {
-            const hours = Math.floor(runtime / 60);
-            const minutes = runtime % 60;
-            return `${hours}h ${minutes}m`;
-        }
-        return undefined;
-    };
-
-    const getReleaseDate = (): string | undefined => {
-        if ("releaseDate" in data) {
-            return data.releaseDate;
-        } else if ("firstAirDate" in data) {
-            return data.firstAirDate;
-        }
-        return undefined;
-    };
+    const duration = formatDuration(runtime);
+    const releaseDate = getMediaReleaseDate(data);
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -77,7 +59,7 @@ const MediaDetailPage = () => {
                 score={data.voteAverage.toFixed(1)}
                 voteCount={data.voteCount}
                 year={year}
-                duration={formatDuration()}
+                duration={duration}
             />
             <ContentMovieDetail
                 imagePath={posterUrl}
@@ -88,7 +70,7 @@ const MediaDetailPage = () => {
                 screenplay={"screenplay" in data ? data.screenplay || undefined : undefined}
                 stars={data.cast.length > 0 ? data.cast : undefined}
                 countries={"productionCountries" in data ? data.productionCountries : undefined}
-                releaseDate={getReleaseDate()}
+                releaseDate={releaseDate}
             />
         </div>
     );

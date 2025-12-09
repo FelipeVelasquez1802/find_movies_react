@@ -59,7 +59,7 @@ describe('HeaderMovieDetail', () => {
     });
 
     it('displays type with primary color', () => {
-        const { container } = render(<HeaderMovieDetail {...defaultProps} />);
+        render(<HeaderMovieDetail {...defaultProps} />);
 
         const typeElement = screen.getByText('MOVIE');
         expect(typeElement).toHaveClass('text-primary');

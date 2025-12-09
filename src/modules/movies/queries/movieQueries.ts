@@ -2,6 +2,21 @@ import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { movieRepository } from '../dependencies';
 import type { Movie, MovieDetail, TVShow, TVShowDetail, BaseMedia } from '../models/entity';
 
+export const QUERY_CONFIG = {
+    list: {
+        staleTime: 5 * 60 * 1000,  // 5 minutes
+        gcTime: 10 * 60 * 1000,    // 10 minutes
+    },
+    detail: {
+        staleTime: 10 * 60 * 1000, // 10 minutes
+        gcTime: 30 * 60 * 1000,    // 30 minutes
+    },
+    search: {
+        staleTime: 2 * 60 * 1000,  // 2 minutes
+        gcTime: 5 * 60 * 1000,     // 5 minutes
+    },
+} as const;
+
 export const MOVIE_QUERY_KEYS = {
     popularMovies: (page: number) => ['movies', 'popular', page] as const,
     topRatedMovies: (page: number) => ['movies', 'topRated', page] as const,
@@ -22,8 +37,7 @@ export const usePopularMovies = (page: number = 1): UseQueryResult<{ movies: Mov
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.popularMovies(page),
         queryFn: () => movieRepository.getPopularMovies(page),
-        staleTime: 5 * 60 * 1000,
-        gcTime: 10 * 60 * 1000,
+        ...QUERY_CONFIG.list,
     });
 };
 
@@ -31,8 +45,7 @@ export const useTopRatedMovies = (page: number = 1): UseQueryResult<{ movies: Mo
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.topRatedMovies(page),
         queryFn: () => movieRepository.getTopRatedMovies(page),
-        staleTime: 5 * 60 * 1000,
-        gcTime: 10 * 60 * 1000,
+        ...QUERY_CONFIG.list,
     });
 };
 
@@ -40,8 +53,7 @@ export const useNowPlayingMovies = (page: number = 1): UseQueryResult<{ movies: 
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.nowPlayingMovies(page),
         queryFn: () => movieRepository.getNowPlayingMovies(page),
-        staleTime: 5 * 60 * 1000,
-        gcTime: 10 * 60 * 1000,
+        ...QUERY_CONFIG.list,
     });
 };
 
@@ -49,8 +61,7 @@ export const useDiscoverMovies = (year?: number, page: number = 1): UseQueryResu
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.discoverMovies(year, page),
         queryFn: () => movieRepository.discoverMovies({ year, page }),
-        staleTime: 5 * 60 * 1000,
-        gcTime: 10 * 60 * 1000,
+        ...QUERY_CONFIG.list,
     });
 };
 
@@ -58,8 +69,7 @@ export const useMovieDetail = (movieId: number): UseQueryResult<MovieDetail, Err
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.movieDetail(movieId),
         queryFn: () => movieRepository.getMovieDetail(movieId),
-        staleTime: 10 * 60 * 1000,
-        gcTime: 30 * 60 * 1000,
+        ...QUERY_CONFIG.detail,
     });
 };
 
@@ -67,8 +77,7 @@ export const usePopularTVShows = (page: number = 1): UseQueryResult<{ shows: TVS
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.popularTVShows(page),
         queryFn: () => movieRepository.getPopularTVShows(page),
-        staleTime: 5 * 60 * 1000,
-        gcTime: 10 * 60 * 1000,
+        ...QUERY_CONFIG.list,
     });
 };
 
@@ -76,8 +85,7 @@ export const useTopRatedTVShows = (page: number = 1): UseQueryResult<{ shows: TV
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.topRatedTVShows(page),
         queryFn: () => movieRepository.getTopRatedTVShows(page),
-        staleTime: 5 * 60 * 1000,
-        gcTime: 10 * 60 * 1000,
+        ...QUERY_CONFIG.list,
     });
 };
 
@@ -85,8 +93,7 @@ export const useOnTheAirTVShows = (page: number = 1): UseQueryResult<{ shows: TV
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.onTheAirTVShows(page),
         queryFn: () => movieRepository.getOnTheAirTVShows(page),
-        staleTime: 5 * 60 * 1000,
-        gcTime: 10 * 60 * 1000,
+        ...QUERY_CONFIG.list,
     });
 };
 
@@ -94,8 +101,7 @@ export const useDiscoverTVShows = (year?: number, page: number = 1): UseQueryRes
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.discoverTVShows(year, page),
         queryFn: () => movieRepository.discoverTVShows({ year, page }),
-        staleTime: 5 * 60 * 1000,
-        gcTime: 10 * 60 * 1000,
+        ...QUERY_CONFIG.list,
     });
 };
 
@@ -103,8 +109,7 @@ export const useTVShowDetail = (tvId: number): UseQueryResult<TVShowDetail, Erro
     return useQuery({
         queryKey: MOVIE_QUERY_KEYS.tvShowDetail(tvId),
         queryFn: () => movieRepository.getTVShowDetail(tvId),
-        staleTime: 10 * 60 * 1000,
-        gcTime: 30 * 60 * 1000,
+        ...QUERY_CONFIG.detail,
     });
 };
 
@@ -113,7 +118,6 @@ export const useSearchMulti = (query: string, page: number = 1): UseQueryResult<
         queryKey: MOVIE_QUERY_KEYS.searchMulti(query, page),
         queryFn: () => movieRepository.searchMulti({ query, page }),
         enabled: query.length > 0,
-        staleTime: 2 * 60 * 1000,
-        gcTime: 5 * 60 * 1000,
+        ...QUERY_CONFIG.search,
     });
 };
